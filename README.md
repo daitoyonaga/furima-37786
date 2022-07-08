@@ -2,6 +2,7 @@
 
 ## users テーブル
 
+
 | Column   | Type   | Options     |
 |----------|--------|-------------|
 | name     | string | null: false               |
@@ -54,4 +55,5 @@
 
 ### Association
 
-- belongs_to :purchase_records
+- belongs_to :purchase_record
+
