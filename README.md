@@ -1,57 +1,24 @@
 # README
 
-## users テーブル
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-| Column   | Type   | Options     |
-|----------|--------|-------------|
-| name     | string | null: false               |
-| email    | string | null: false, unique: true |
-| password | string | null: false |
+Things you may want to cover:
 
-### Association
+* Ruby version
 
-- has_many :items
-- has_many :parchase_records
+* System dependencies
 
-## items テーブル
+* Configuration
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ | 
-| title           | string     | null: false                    |
-| content         | text       | null: false                    |
-| price           | integer    | null: false                    |
-| user            | references | null: false, foreign_key: true |
+* Database creation
 
-### Association
+* Database initialization
 
-- belongs_to :user
-- has_one :purchase_record
+* How to run the test suite
 
-## purchase_records テーブル
+* Services (job queues, cache servers, search engines, etc.)
 
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| user   | references | null: false, foreign_key: true |
-| item   | references | null: false, foreign_key: true |
+* Deployment instructions
 
-### Association
-
-- belongs_to :user
-- belongs_to :item
-- has_one :shipping_information
-
-## shipping_information テーブル
-
-| Column           | Type       | Options                        |
-| ---------------- | ---------- | ------------------------------ |
-| post_code        | integer    | null: false                    |
-| prefectures      | string     | null: false                    |
-| municipalities   | string     | null: false                    |
-| address          | integer    | null: false                    |
-| building_name    | string     |                                |
-| phone_number     | integer    | null: false                    |
-| purchase_records | references | null: false, foreign_key: true |
-
-### Association
-
-- belongs_to :purchase_records
+* ...
