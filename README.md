@@ -2,7 +2,7 @@
 
 ## users テーブル
 
-Things you may want to cover:
+
 | Column   | Type   | Options     |
 |----------|--------|-------------|
 | name     | string | null: false               |
@@ -56,3 +56,4 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :purchase_record
+
