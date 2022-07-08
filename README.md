@@ -2,11 +2,14 @@
 
 ## users テーブル
 
-| Column   | Type   | Options     |
-|----------|--------|-------------|
-| name     | string | null: false               |
-| email    | string | null: false, unique: true |
-| password | string | null: false |
+| Column             | Type   | Options                   |
+|--------------------|--------|---------------------------|
+| name               | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| last_name          | string | null: false               |
+| first_name         | string | null: false               |
+| birth_date         | string | null: false               |
 
 ### Association
 
@@ -17,8 +20,14 @@
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ | 
+| image           |            | null: false                    |
 | title           | string     | null: false                    |
 | content         | text       | null: false                    |
+| category        | string     | null: false                    |
+| condition       | string     | null: false                    |
+| delivery_charge | string     | null: false                    |
+| shipment_source | string     | null: false                    |
+| days            | string     | null: false                    |
 | price           | integer    | null: false                    |
 | user            | references | null: false, foreign_key: true |
 
@@ -44,14 +53,14 @@
 
 | Column           | Type       | Options                        |
 | ---------------- | ---------- | ------------------------------ |
-| post_code        | integer    | null: false                    |
+| post_code        | string     | null: false                    |
 | prefectures      | string     | null: false                    |
 | municipalities   | string     | null: false                    |
 | address          | integer    | null: false                    |
 | building_name    | string     |                                |
-| phone_number     | integer    | null: false                    |
-| purchase_records | references | null: false, foreign_key: true |
+| phone_number     | string     | null: false                    |
+| purchase_record  | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :purchase_records
+- belongs_to :purchase_record
