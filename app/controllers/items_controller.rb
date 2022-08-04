@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
+
   def index
   end
 
@@ -8,11 +9,11 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
+    @item = Item.create(item_params)
     if @item.save
       redirect_to action: :index
     else
-      redirect_to action: :new
+      render :new
     end
   end
 
