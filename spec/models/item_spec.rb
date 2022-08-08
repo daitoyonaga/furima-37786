@@ -38,6 +38,11 @@ RSpec.describe Item, type: :model do
     end
 
     context '商品出品できない場合' do
+      it 'ユーザー登録している人でないと出品できない' do
+        item = Item.new(user_id: "")
+        item.valid?
+        expect(item.errors.full_messages).to include('User must exist')
+      end
       it 'imageが空では登録できない' do
         @item.image = nil
         @item.valid?
@@ -54,27 +59,27 @@ RSpec.describe Item, type: :model do
         expect(item.errors.full_messages).to include("Content can't be blank")
       end
       it 'category_idが未選択では登録できない' do
-        item = Item.new(category_id: "")
+        item = Item.new(category_id: 1)
         item.valid?
         expect(item.errors.full_messages).to include("Category can't be blank")
       end
       it 'condition_idが未選択では登録できない' do
-        item = Item.new(condition_id: "")
+        item = Item.new(condition_id: 1)
         item.valid?
         expect(item.errors.full_messages).to include("Condition can't be blank")
       end
       it 'delivery_charge_idが未選択では登録できない' do
-        item = Item.new(delivery_charge_id: "")
+        item = Item.new(delivery_charge_id: 1)
         item.valid?
         expect(item.errors.full_messages).to include("Delivery charge can't be blank")
       end
       it 'prefecture_idが未選択では登録できない' do
-        item = Item.new(prefecture_id: "")
+        item = Item.new(prefecture_id: 1)
         item.valid?
         expect(item.errors.full_messages).to include("Prefecture can't be blank")
       end
       it 'delivery_day_idが未選択では登録できない' do
-        item = Item.new(delivery_day_id: "")
+        item = Item.new(delivery_day_id: 1)
         item.valid?
         expect(item.errors.full_messages).to include("Delivery day can't be blank")
       end
@@ -83,10 +88,15 @@ RSpec.describe Item, type: :model do
         item.valid?
         expect(item.errors.full_messages).to include("Price can't be blank")
       end
-      it 'priceは、¥300~¥9,999,999の間のみ保存可能であること' do
+      it 'priceは299以下の場合登録できない' do
         item = Item.new(price: 100)
         item.valid?
         expect(item.errors.full_messages).to include("Price must be greater than or equal to 300")
+      end
+      it 'priceは10,000,000以上の場合登録できない' do
+        item = Item.new(price: 10_000_000)
+        item.valid?
+        expect(item.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
       it 'priceが全角数字では登録できない' do
         item = Item.new(price: "１０００")
