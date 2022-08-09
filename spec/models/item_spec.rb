@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-  
   before do
     @item = FactoryBot.build(:item)
   end
@@ -39,7 +38,7 @@ RSpec.describe Item, type: :model do
 
     context '商品出品できない場合' do
       it 'ユーザー登録している人でないと出品できない' do
-        item = Item.new(user_id: "")
+        item = Item.new(user_id: '')
         item.valid?
         expect(item.errors.full_messages).to include('User must exist')
       end
@@ -49,12 +48,12 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it 'titleが空では登録できない' do
-        item = Item.new(title: "")
+        item = Item.new(title: '')
         item.valid?
         expect(item.errors.full_messages).to include("Title can't be blank")
       end
       it 'contentが空では登録できない' do
-        item = Item.new(content: "")
+        item = Item.new(content: '')
         item.valid?
         expect(item.errors.full_messages).to include("Content can't be blank")
       end
@@ -84,24 +83,24 @@ RSpec.describe Item, type: :model do
         expect(item.errors.full_messages).to include("Delivery day can't be blank")
       end
       it 'priceが空では登録できない' do
-        item = Item.new(price: "")
+        item = Item.new(price: '')
         item.valid?
         expect(item.errors.full_messages).to include("Price can't be blank")
       end
       it 'priceは299以下の場合登録できない' do
         item = Item.new(price: 100)
         item.valid?
-        expect(item.errors.full_messages).to include("Price must be greater than or equal to 300")
+        expect(item.errors.full_messages).to include('Price must be greater than or equal to 300')
       end
       it 'priceは10,000,000以上の場合登録できない' do
         item = Item.new(price: 10_000_000)
         item.valid?
-        expect(item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+        expect(item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
       it 'priceが全角数字では登録できない' do
-        item = Item.new(price: "１０００")
+        item = Item.new(price: '１０００')
         item.valid?
-        expect(item.errors.full_messages).to include("Price is not a number")
+        expect(item.errors.full_messages).to include('Price is not a number')
       end
     end
   end
