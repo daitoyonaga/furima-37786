@@ -2,7 +2,7 @@ class OrderForm
   include ActiveModel::Model
   attr_accessor :user_id, :item_id, :postcode, :prefecture_id, :city, :address, :building_name, :phone_number, :token
 
-  with_options presece: true do
+  with_options presence: true do
     validates :user_id
     validates :item_id
 
